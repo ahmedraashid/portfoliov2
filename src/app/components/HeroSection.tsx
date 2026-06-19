@@ -224,12 +224,16 @@ export function HeroSection() {
       />
 
       {/* Hero content */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 py-32">
-        <motion.div
-          initial={{ opacity: 0, y: 60 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-        >
+      {/* Hero content */}
+<div className="relative z-10 w-full max-w-7xl mx-auto px-6 py-32">
+  <div className="grid lg:grid-cols-2 gap-12 items-center">
+
+    {/* LEFT SIDE */}
+    <motion.div
+      initial={{ opacity: 0, y: 60 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+    >
           {/* Badge */}
           <motion.div
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full border mb-8"
@@ -388,40 +392,72 @@ export function HeroSection() {
           </motion.div>
         </motion.div>
 
-        {/* Stats row */}
-        <motion.div
-          className="absolute bottom-12 left-6 right-6 flex gap-8 flex-wrap"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.3 }}
-        >
-          {[
-            { num: "15+", label: "Projects Built" },
-            { num: "3", label: "Internships" },
-            { num: "5+", label: "Leadership Roles" },
-            { num: "25+", label: "Technologies" },
-          ].map(s => (
-            <div key={s.label} className="flex items-center gap-3">
-              <span
-                className="text-2xl font-bold"
-                style={{
-                  fontFamily: "Orbitron, monospace",
-                  background: "linear-gradient(90deg, #4f8ef7, #7c3aed)",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                  backgroundClip: "text",
-                }}
-              >
-                {s.num}
-              </span>
-              <span className="text-xs text-gray-500 uppercase tracking-wider" style={{ fontFamily: "Inter, sans-serif" }}>
-                {s.label}
-              </span>
-            </div>
-          ))}
-        </motion.div>
-      </div>
+            
 
+    {/* RIGHT SIDE IMAGE */}
+    <motion.div
+      className="relative flex justify-center lg:justify-end lg:translate-x-16"
+      initial={{ opacity: 0, x: 100 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 1, delay: 0.5 }}
+    >
+      {/* Glow */}
+      <div
+  className="absolute w-[800px] h-[800px] rounded-full blur-[220px]"
+  style={{
+    background:
+      "radial-gradient(circle, rgba(79,142,247,0.35) 0%, rgba(124,58,237,0.25) 35%, transparent 70%)",
+  }}
+/>
+
+      {/* Image */}
+      <img
+  src="/images/raashid-portrait.png"
+  alt="Raashid Ahmed"
+  className="
+    relative z-10
+    h-[650px]
+    w-auto
+    object-cover
+    select-none
+    pointer-events-none
+  "
+  style={{
+  opacity: 0.65,
+  filter:
+    "grayscale(15%) contrast(1.1) brightness(0.8)",
+  mixBlendMode: "lighten",
+  maskImage:
+    "radial-gradient(circle at center, black 55%, transparent 100%)",
+  WebkitMaskImage:
+    "radial-gradient(circle at center, black 55%, transparent 100%)",
+  
+}}
+/>
+
+      {/* Floating Badge */}
+      <div
+        className="absolute top-8 left-0 z-20 px-4 py-2 rounded-full"
+        style={{
+          background: "rgba(255,255,255,0.05)",
+          backdropFilter: "blur(12px)",
+          border: "1px solid rgba(255,255,255,0.08)",
+        }}
+      >
+        <span
+          style={{
+            color: "#4f8ef7",
+            fontFamily: "JetBrains Mono, monospace",
+            fontSize: "12px",
+          }}
+        >
+          
+        </span>
+      </div>
+    </motion.div>
+
+  </div>
+</div>
       {/* Scroll indicator */}
       <motion.div
         className="absolute bottom-8 right-8 flex flex-col items-center gap-2 z-10"
