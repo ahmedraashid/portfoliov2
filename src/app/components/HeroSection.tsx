@@ -226,7 +226,7 @@ export function HeroSection() {
       {/* Hero content */}
       {/* Hero content */}
 <div className="relative z-10 w-full max-w-7xl mx-auto px-6 py-32">
-  <div className="grid lg:grid-cols-2 gap-12 items-center">
+  <div className="grid md:grid-cols-2 gap-12 items-center">
 
     {/* LEFT SIDE */}
     <motion.div
@@ -415,13 +415,16 @@ export function HeroSection() {
   src="/images/raashid-portrait.png"
   alt="Raashid Ahmed"
   className="
-    relative z-10
-    h-[650px]
-    w-auto
-    object-cover
-    select-none
-    pointer-events-none
-  "
+  relative z-10
+  h-[320px]
+  sm:h-[400px]
+  md:h-[450px]
+  lg:h-[650px]
+  w-auto
+  object-cover
+  select-none
+  pointer-events-none
+"
   style={{
   opacity: 0.65,
   filter:
