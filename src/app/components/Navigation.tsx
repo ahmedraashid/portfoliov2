@@ -92,7 +92,7 @@ export function Navigation() {
             boxShadow: "0 0 20px rgba(79,142,247,0.3)",
           }}
         >
-          Hire Me
+          Let's Connect
         </button>
 
         {/* Mobile hamburger */}
