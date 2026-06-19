@@ -1,70 +1,108 @@
 import { useRef, useState } from "react";
 import { motion, useInView } from "motion/react";
+import {
+  FaCode,
+  FaPalette,
+  FaServer,
+  FaDatabase,
+  FaRobot,
+  FaCloud
+} from "react-icons/fa";
+import {
+  FaPython,
+  FaJava,
+  FaReact,
+  FaDocker,
+  FaAws,
+  FaNodeJs
+} from "react-icons/fa";
+
+import {
+  SiTypescript,
+  SiMongodb,
+  SiLinux,
+  SiTensorflow
+} from "react-icons/si";
+
 
 const skillCategories = [
   {
     name: "Programming",
-    icon: "⌨️",
+    icon: FaCode,
     color: "#4f8ef7",
     skills: ["Python", "Java", "C", "C++", "JavaScript", "TypeScript"],
   },
   {
     name: "Frontend",
-    icon: "🎨",
+    icon: FaPalette,
     color: "#7c3aed",
     skills: ["React", "TypeScript", "HTML5", "CSS3", "Tailwind CSS", "Next.js"],
   },
   {
     name: "Backend",
-    icon: "⚙️",
+    icon: FaServer,
     color: "#06b6d4",
     skills: ["Node.js", "Express.js", "PHP", "REST APIs", "GraphQL"],
   },
   {
     name: "Database",
-    icon: "🗄️",
+    icon: FaDatabase,
     color: "#f97316",
     skills: ["MongoDB", "MySQL", "PostgreSQL", "Redis"],
   },
   {
     name: "AI & ML",
-    icon: "🤖",
+    icon: FaRobot,
     color: "#a855f7",
     skills: ["Machine Learning", "Deep Learning", "NLP", "Computer Vision", "OpenCV", "TensorFlow"],
   },
   {
     name: "DevOps",
-    icon: "☁️",
+    icon: FaCloud,
     color: "#10b981",
     skills: ["Docker", "Jenkins", "CI/CD", "AWS", "Linux", "Google Cloud"],
   },
 ];
 
-const techLogos: Record<string, string> = {
-  Python: "🐍",
-  Java: "☕",
-  React: "⚛️",
-  TypeScript: "🔷",
-  "Node.js": "💚",
-  Docker: "🐳",
-  AWS: "☁️",
-  MongoDB: "🍃",
-  Linux: "🐧",
-  "Machine Learning": "🧠",
-  NLP: "📝",
-  "Computer Vision": "👁️",
+const techLogos: Record<string, any> = {
+  Python: FaPython,
+  Java: FaJava,
+  React: FaReact,
+  TypeScript: SiTypescript,
+  "Node.js": FaNodeJs,
+  Docker: FaDocker,
+  AWS: FaAws,
+  MongoDB: SiMongodb,
+  Linux: SiLinux,
+  TensorFlow: SiTensorflow,
 };
 
-function SkillCard({ category, index, inView }: { category: typeof skillCategories[0]; index: number; inView: boolean }) {
+function SkillCard({
+  category,
+  index,
+  inView,
+}: {
+  category: typeof skillCategories[0];
+  index: number;
+  inView: boolean;
+}) {
   const [hovered, setHovered] = useState(false);
+
+  const CategoryIcon = category.icon;
 
   return (
     <motion.div
       className="relative p-6 rounded-2xl border overflow-hidden cursor-default"
       style={{
-        background: hovered ? `linear-gradient(135deg, ${category.color}0d, rgba(18,18,18,0.9))` : "rgba(18,18,18,0.8)",
-        borderColor: hovered ? `${category.color}44` : "rgba(255,255,255,0.06)",
-        boxShadow: hovered ? `0 0 40px ${category.color}22, 0 20px 40px rgba(0,0,0,0.4)` : "0 4px 20px rgba(0,0,0,0.3)",
+        background: hovered
+          ? `linear-gradient(135deg, ${category.color}0d, rgba(18,18,18,0.9))`
+          : "rgba(18,18,18,0.8)",
+        borderColor: hovered
+          ? `${category.color}44`
+          : "rgba(255,255,255,0.06)",
+        boxShadow: hovered
+          ? `0 0 40px ${category.color}22, 0 20px 40px rgba(0,0,0,0.4)`
+          : "0 4px 20px rgba(0,0,0,0.3)",
         transform: hovered ? "translateY(-8px)" : "translateY(0)",
         transition: "all 0.4s cubic-bezier(0.16,1,0.3,1)",
       }}
@@ -77,17 +115,26 @@ function SkillCard({ category, index, inView }: { category: typeof skillCategori
       {/* Glow corner */}
       <div
         className="absolute top-0 right-0 w-32 h-32 rounded-full blur-3xl transition-opacity duration-500"
-        style={{ background: category.color, opacity: hovered ? 0.12 : 0.04 }}
+        style={{
+          background: category.color,
+          opacity: hovered ? 0.12 : 0.04,
+        }}
       />
 
       {/* Header */}
       <div className="flex items-center gap-3 mb-5">
         <div
-          className="w-10 h-10 rounded-xl flex items-center justify-center text-xl"
-          style={{ background: `${category.color}1a` }}
+          className="w-10 h-10 rounded-xl flex items-center justify-center"
+          style={{
+            background: `${category.color}1a`,
+          }}
         >
-          {category.icon}
+          <CategoryIcon
+            size={20}
+            color={category.color}
+          />
         </div>
+
         <div>
           <h3
             className="font-bold text-sm text-white"
@@ -95,34 +142,45 @@ function SkillCard({ category, index, inView }: { category: typeof skillCategori
           >
             {category.name}
           </h3>
+
           <div
             className="w-8 h-0.5 mt-1 rounded"
-            style={{ background: category.color }}
+            style={{
+              background: category.color,
+            }}
           />
         </div>
       </div>
 
       {/* Skills pills */}
       <div className="flex flex-wrap gap-2">
-        {category.skills.map((skill, i) => (
-          <motion.span
-            key={skill}
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium"
-            style={{
-              background: `${category.color}12`,
-              color: hovered ? "rgba(255,255,255,0.85)" : "rgba(255,255,255,0.55)",
-              border: `1px solid ${category.color}${hovered ? "44" : "1a"}`,
-              fontFamily: "Inter, sans-serif",
-              transition: "all 0.3s ease",
-            }}
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={inView ? { opacity: 1, scale: 1 } : {}}
-            transition={{ delay: index * 0.1 + i * 0.05 + 0.2 }}
-          >
-            {techLogos[skill] && <span>{techLogos[skill]}</span>}
-            {skill}
-          </motion.span>
-        ))}
+        {category.skills.map((skill, i) => {
+          const Logo = techLogos[skill];
+
+          return (
+            <motion.span
+              key={skill}
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium"
+              style={{
+                background: `${category.color}12`,
+                color: hovered
+                  ? "rgba(255,255,255,0.85)"
+                  : "rgba(255,255,255,0.55)",
+                border: `1px solid ${category.color}${hovered ? "44" : "1a"}`,
+                fontFamily: "Inter, sans-serif",
+                transition: "all 0.3s ease",
+              }}
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={inView ? { opacity: 1, scale: 1 } : {}}
+              transition={{
+                delay: index * 0.1 + i * 0.05 + 0.2,
+              }}
+            >
+              {Logo && <Logo size={14} />}
+              {skill}
+            </motion.span>
+          );
+        })}
       </div>
     </motion.div>
   );

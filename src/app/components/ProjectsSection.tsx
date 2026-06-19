@@ -1,91 +1,120 @@
 import { useRef, useState } from "react";
 import { motion, useInView } from "motion/react";
+import {
+  FaTrain,
+  FaShieldAlt,
+  FaBrain,
+  FaHandPaper,
+  FaComments,
+  FaParking,
+  FaDumbbell,
+  FaHospital,
+} from "react-icons/fa";
 
 const projects = [
   {
     title: "Railway Reservation System",
-    desc: "Full-stack web application for booking and managing train tickets with real-time seat availability, user auth, and admin dashboard.",
+    desc: "Full-stack web application for booking and managing train tickets with real-time seat availability, user authentication, booking management, and admin dashboard.",
     stack: ["React", "Node.js", "MongoDB", "Express"],
     accent: "#4f8ef7",
-    emoji: "🚂",
+    icon: FaTrain,
     tag: "Full Stack",
     featured: true,
   },
+
   {
     title: "Credit Card Fraud Detection",
-    desc: "ML model achieving 99.2% accuracy using ensemble methods and anomaly detection to identify fraudulent transactions in real-time.",
+    desc: "Machine learning model achieving high fraud detection accuracy using ensemble methods and anomaly detection techniques for financial transaction monitoring.",
     stack: ["Python", "Scikit-learn", "Pandas", "Flask"],
     accent: "#7c3aed",
-    emoji: "🔐",
+    icon: FaShieldAlt,
     tag: "Machine Learning",
     featured: true,
   },
+
   {
     title: "Human Burnout Detection",
-    desc: "AI prediction platform using NLP and behavioral pattern analysis to detect employee burnout risk levels and recommend interventions.",
+    desc: "AI-powered prediction platform leveraging NLP and behavioral analysis to identify burnout risk levels and recommend preventive interventions.",
     stack: ["Python", "TensorFlow", "NLP", "React"],
     accent: "#f97316",
-    emoji: "🧠",
+    icon: FaBrain,
     tag: "AI Platform",
     featured: true,
   },
+
   {
     title: "Facial & Hand Gesture Recognition",
-    desc: "Real-time gesture-controlled interface using computer vision — enables touchless UI navigation for accessibility applications.",
+    desc: "Real-time computer vision system enabling touchless interaction through facial tracking and gesture recognition using advanced image processing.",
     stack: ["OpenCV", "MediaPipe", "Python", "TensorFlow"],
     accent: "#06b6d4",
-    emoji: "🖐️",
+    icon: FaHandPaper,
     tag: "Computer Vision",
     featured: false,
   },
+
   {
     title: "Mental Health Counselling System",
-    desc: "NLP-powered conversational assistant that provides mental health support, mood tracking, and connects users with professional resources.",
+    desc: "NLP-powered conversational assistant that provides mental health support, mood tracking, and connects users with professional counselling resources.",
     stack: ["NLP", "Python", "React", "Node.js"],
     accent: "#a855f7",
-    emoji: "💬",
+    icon: FaComments,
     tag: "NLP · Healthcare",
     featured: false,
   },
+
   {
     title: "IoT Smart Parking System",
-    desc: "RFID and sensor-based automated parking management with real-time slot monitoring, mobile alerts, and cloud data sync.",
+    desc: "RFID and sensor-based automated parking management platform with real-time slot monitoring, cloud synchronization, and mobile notifications.",
     stack: ["Arduino", "NodeMCU", "RFID", "IoT"],
     accent: "#10b981",
-    emoji: "🅿️",
+    icon: FaParking,
     tag: "IoT · Embedded",
     featured: false,
   },
+
   {
-  title: "AI Fitness & Diet Recommendation System",
-  desc: "Machine learning-powered fitness prediction platform that analyzes user health metrics, activity levels, and goals to generate personalized workout plans, calorie targets, and diet recommendations for improved health outcomes.",
-  stack: ["Python", "Machine Learning", "Scikit-learn", "Flask"],
-  accent: "#8b5cf6",
-  emoji: "💪",
-  tag: "AI · Healthcare",
-  featured: true,
-},
-{
-  title: "Smart Hospital Management System",
-  desc: "Enterprise-grade healthcare automation solution designed to digitize and optimize hospital operations. Features include patient registration, online appointment scheduling, automated email and SMS notifications, doctor and staff management, electronic health records (EHR), billing, pharmacy inventory, laboratory reports, follow-up reminders, and real-time administrative dashboards. The platform creates a seamless healthcare ecosystem by automating communication, reducing manual effort, and enhancing patient engagement throughout the treatment lifecycle.",
-  stack: ["React.js", "Node.js", "MongoDB", "Express.js"],
-  accent: "#06b6d4",
-  emoji: "⚕️",
-  tag: "Healthcare · Digital Transformation",
-  featured: true,
-},
+    title: "AI Fitness & Diet Recommendation System",
+    desc: "Machine learning-powered platform that analyzes health metrics, activity levels, and fitness goals to generate personalized workout and nutrition plans.",
+    stack: ["Python", "Machine Learning", "Scikit-learn", "Flask"],
+    accent: "#8b5cf6",
+    icon: FaDumbbell,
+    tag: "AI · Healthcare",
+    featured: true,
+  },
+
+  {
+    title: "Smart Hospital Management System",
+    desc: "Enterprise-grade healthcare automation platform featuring patient registration, appointment scheduling, EHR management, billing, pharmacy inventory, laboratory reports, notifications, and administrative dashboards.",
+    stack: ["React.js", "Node.js", "MongoDB", "Express.js"],
+    accent: "#06b6d4",
+    icon: FaHospital,
+    tag: "Healthcare · Digital Transformation",
+    featured: true,
+  },
 ];
 
-function ProjectCard({ project, index, inView }: { project: typeof projects[0]; index: number; inView: boolean }) {
+function ProjectCard({
+  project,
+  index,
+  inView,
+}: {
+  project: typeof projects[0];
+  index: number;
+  inView: boolean;
+}) {
   const [hovered, setHovered] = useState(false);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const cardRef = useRef<HTMLDivElement>(null);
 
+  const ProjectIcon = project.icon;
+
   const handleMouseMove = (e: React.MouseEvent) => {
     if (!cardRef.current) return;
+
     const rect = cardRef.current.getBoundingClientRect();
     const x = ((e.clientX - rect.left) / rect.width - 0.5) * 20;
     const y = ((e.clientY - rect.top) / rect.height - 0.5) * -20;
+
     setMousePos({ x, y });
   };
 
@@ -95,7 +124,9 @@ function ProjectCard({ project, index, inView }: { project: typeof projects[0]; 
       className="relative rounded-2xl border overflow-hidden cursor-default"
       style={{
         background: "rgba(18,18,18,0.9)",
-        borderColor: hovered ? `${project.accent}44` : "rgba(255,255,255,0.06)",
+        borderColor: hovered
+          ? `${project.accent}44`
+          : "rgba(255,255,255,0.06)",
         boxShadow: hovered
           ? `0 30px 60px rgba(0,0,0,0.5), 0 0 60px ${project.accent}1a`
           : "0 4px 24px rgba(0,0,0,0.3)",
@@ -108,27 +139,44 @@ function ProjectCard({ project, index, inView }: { project: typeof projects[0]; 
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ delay: index * 0.1, duration: 0.8 }}
       onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => { setHovered(false); setMousePos({ x: 0, y: 0 }); }}
+      onMouseLeave={() => {
+        setHovered(false);
+        setMousePos({ x: 0, y: 0 });
+      }}
       onMouseMove={handleMouseMove}
     >
       {/* Top accent bar */}
-      <div className="h-0.5 w-full" style={{ background: `linear-gradient(90deg, ${project.accent}, transparent)` }} />
+      <div
+        className="h-0.5 w-full"
+        style={{
+          background: `linear-gradient(90deg, ${project.accent}, transparent)`,
+        }}
+      />
 
       {/* Glow */}
       <div
         className="absolute top-0 right-0 w-48 h-48 rounded-full blur-3xl transition-opacity duration-500 pointer-events-none"
-        style={{ background: project.accent, opacity: hovered ? 0.1 : 0.03 }}
+        style={{
+          background: project.accent,
+          opacity: hovered ? 0.1 : 0.03,
+        }}
       />
 
       <div className="p-6">
         {/* Header */}
         <div className="flex items-start justify-between mb-4">
           <div
-            className="w-12 h-12 rounded-xl flex items-center justify-center text-2xl"
-            style={{ background: `${project.accent}1a` }}
+            className="w-12 h-12 rounded-xl flex items-center justify-center"
+            style={{
+              background: `${project.accent}1a`,
+            }}
           >
-            {project.emoji}
+            <ProjectIcon
+              size={24}
+              color={project.accent}
+            />
           </div>
+
           <span
             className="text-xs px-3 py-1 rounded-full font-medium"
             style={{
@@ -148,16 +196,20 @@ function ProjectCard({ project, index, inView }: { project: typeof projects[0]; 
         >
           {project.title}
         </h3>
+
         <p
           className="text-xs leading-relaxed mb-5"
-          style={{ color: "rgba(255,255,255,0.45)", fontFamily: "Inter, sans-serif" }}
+          style={{
+            color: "rgba(255,255,255,0.45)",
+            fontFamily: "Inter, sans-serif",
+          }}
         >
           {project.desc}
         </p>
 
         {/* Stack */}
         <div className="flex flex-wrap gap-2">
-          {project.stack.map(tech => (
+          {project.stack.map((tech) => (
             <span
               key={tech}
               className="text-xs px-2 py-1 rounded-md"
@@ -173,20 +225,36 @@ function ProjectCard({ project, index, inView }: { project: typeof projects[0]; 
           ))}
         </div>
 
-        {/* Hover reveal */}
+        {/* Hover Reveal */}
         <motion.div
           className="mt-4 pt-4 border-t flex items-center justify-between"
-          style={{ borderColor: "rgba(255,255,255,0.06)" }}
+          style={{
+            borderColor: "rgba(255,255,255,0.06)",
+          }}
           initial={{ opacity: 0 }}
           animate={{ opacity: hovered ? 1 : 0 }}
           transition={{ duration: 0.2 }}
         >
-          <span className="text-xs" style={{ color: project.accent, fontFamily: "JetBrains Mono, monospace" }}>
+          <span
+            className="text-xs"
+            style={{
+              color: project.accent,
+              fontFamily: "JetBrains Mono, monospace",
+            }}
+          >
             View Project →
           </span>
+
           <div className="flex gap-1">
             {[...Array(3)].map((_, i) => (
-              <div key={i} className="w-1 h-1 rounded-full" style={{ background: project.accent, opacity: 0.4 + i * 0.2 }} />
+              <div
+                key={i}
+                className="w-1 h-1 rounded-full"
+                style={{
+                  background: project.accent,
+                  opacity: 0.4 + i * 0.2,
+                }}
+              />
             ))}
           </div>
         </motion.div>

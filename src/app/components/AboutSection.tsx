@@ -1,5 +1,16 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, useInView } from "motion/react";
+import {
+  FaGraduationCap,
+  FaRocket,
+  FaBolt,
+  FaUsers,
+  FaCode,
+} from "react-icons/fa";
+
+import {
+  MdWork,
+} from "react-icons/md";
 
 function AnimatedCounter({ target, suffix = "" }: { target: number; suffix?: string }) {
   const [count, setCount] = useState(0);
@@ -31,10 +42,30 @@ function AnimatedCounter({ target, suffix = "" }: { target: number; suffix?: str
 }
 
 const stats = [
-  { value: 15, suffix: "+", label: "Projects Built", icon: "⚡" },
-  { value: 3, suffix: "", label: "Internships", icon: "🚀" },
-  { value: 5, suffix: "+", label: "Leadership Roles", icon: "👑" },
-  { value: 25, suffix: "+", label: "Technologies", icon: "🛠" },
+  {
+    value: 15,
+    suffix: "+",
+    label: "Projects Built",
+    icon: FaBolt,
+  },
+  {
+    value: 3,
+    suffix: "",
+    label: "Internships",
+    icon: FaRocket,
+  },
+  {
+    value: 5,
+    suffix: "+",
+    label: "Leadership Roles",
+    icon: FaUsers,
+  },
+  {
+    value: 25,
+    suffix: "+",
+    label: "Technologies",
+    icon: FaCode,
+  },
 ];
 
 const timelineItems = [
@@ -136,43 +167,69 @@ export function AboutSection() {
             </div>
 
             {/* Stats */}
-            <div className="grid grid-cols-2 gap-4 mt-10">
-              {stats.map((stat, i) => (
-                <motion.div
-                  key={stat.label}
-                  className="p-5 rounded-2xl border relative overflow-hidden group"
-                  style={{
-                    background: "rgba(18,18,18,0.8)",
-                    borderColor: "rgba(255,255,255,0.06)",
-                  }}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={inView ? { opacity: 1, scale: 1 } : {}}
-                  transition={{ delay: 0.6 + i * 0.1 }}
-                  whileHover={{ borderColor: "rgba(79,142,247,0.3)", y: -4 }}
-                >
-                  <div className="text-2xl mb-2">{stat.icon}</div>
-                  <div
-                    className="text-3xl font-black mb-1"
-                    style={{
-                      fontFamily: "Orbitron, monospace",
-                      background: "linear-gradient(90deg, #4f8ef7, #7c3aed)",
-                      WebkitBackgroundClip: "text",
-                      WebkitTextFillColor: "transparent",
-                      backgroundClip: "text",
-                    }}
-                  >
-                    <AnimatedCounter target={stat.value} suffix={stat.suffix} />
-                  </div>
-                  <p className="text-xs text-gray-500" style={{ fontFamily: "Inter, sans-serif" }}>
-                    {stat.label}
-                  </p>
-                  <div
-                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                    style={{ background: "radial-gradient(ellipse at center, rgba(79,142,247,0.06) 0%, transparent 70%)" }}
-                  />
-                </motion.div>
-              ))}
-            </div>
+            {/* Stats */}
+<div className="grid grid-cols-2 gap-4 mt-10">
+  {stats.map((stat, i) => (
+    <motion.div
+      key={stat.label}
+      className="p-5 rounded-2xl border relative overflow-hidden group"
+      style={{
+        background: "rgba(18,18,18,0.8)",
+        borderColor: "rgba(255,255,255,0.06)",
+      }}
+      initial={{ opacity: 0, scale: 0.9 }}
+      animate={inView ? { opacity: 1, scale: 1 } : {}}
+      transition={{ delay: 0.6 + i * 0.1 }}
+      whileHover={{
+        borderColor: "rgba(79,142,247,0.3)",
+        y: -4,
+      }}
+    >
+      {/* Icon */}
+      <div className="mb-3">
+        <stat.icon
+          size={22}
+          color="#4f8ef7"
+          className="group-hover:scale-110 transition-transform duration-300"
+        />
+      </div>
+
+      {/* Counter */}
+      <div
+        className="text-3xl font-black mb-1"
+        style={{
+          fontFamily: "Orbitron, monospace",
+          background: "linear-gradient(90deg, #4f8ef7, #7c3aed)",
+          WebkitBackgroundClip: "text",
+          WebkitTextFillColor: "transparent",
+          backgroundClip: "text",
+        }}
+      >
+        <AnimatedCounter
+          target={stat.value}
+          suffix={stat.suffix}
+        />
+      </div>
+
+      {/* Label */}
+      <p
+        className="text-xs text-gray-500"
+        style={{ fontFamily: "Inter, sans-serif" }}
+      >
+        {stat.label}
+      </p>
+
+      {/* Hover Glow */}
+      <div
+        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(ellipse at center, rgba(79,142,247,0.06) 0%, transparent 70%)",
+        }}
+      />
+    </motion.div>
+  ))}
+</div>
           </motion.div>
 
           {/* Right — timeline */}

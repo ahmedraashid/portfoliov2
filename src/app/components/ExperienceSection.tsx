@@ -10,7 +10,7 @@ const experiences = [
     desc: "Developed production-ready React components, implemented state management with Redux, and optimized UI performance. Collaborated in an Agile team environment delivering weekly sprints.",
     skills: ["React", "Redux", "TypeScript", "Tailwind CSS", "Figma"],
     accent: "#4f8ef7",
-    icon: "💻",
+    icon: "",
   },
   {
     role: "Social Media Manager",
@@ -20,7 +20,7 @@ const experiences = [
     desc: "Managed digital presence, created data-driven content strategies, and grew social following by 40%. Leveraged analytics to optimize engagement and conversion rates.",
     skills: ["Strategy", "Analytics", "Content", "Growth", "Brand"],
     accent: "#7c3aed",
-    icon: "📱",
+    icon: "",
   },
   {
     role: "Business Analyst Intern",
@@ -30,7 +30,7 @@ const experiences = [
     desc: "Conducted market research, analyzed business processes, and delivered data-backed recommendations that improved operational efficiency by 25%.",
     skills: ["Data Analysis", "Excel", "PowerBI", "Research", "Strategy"],
     accent: "#f97316",
-    icon: "📊",
+    icon: "",
   },
 ];
 

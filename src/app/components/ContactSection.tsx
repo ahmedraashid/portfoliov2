@@ -1,12 +1,28 @@
 import { useRef, useState } from "react";
 import { motion, useInView } from "motion/react";
 import type { FormEvent } from "react";
+import { FaGithub, FaLinkedin, FaInstagram, FaMapMarkerAlt, FaGraduationCap } from "react-icons/fa";
+import { MdEmail } from "react-icons/md";
 
 const socials = [
-  { label: "GitHub", icon: "⌨️", href: "https://github.com/raashidahmed", accent: "#4f8ef7" },
-  { label: "LinkedIn", icon: "💼", href: "https://linkedin.com/in/raashidahmed", accent: "#7c3aed" },
-  { label: "Twitter", icon: "🐦", href: "https://twitter.com/raashidahmed", accent: "#06b6d4" },
-  { label: "Email", icon: "✉️", href: "mailto:ahmedraashid21@gmail.com", accent: "#f97316" },
+  {
+    label: "GitHub",
+    icon: FaGithub,
+    href: "https://github.com/Raashidcodes",
+    accent: "#4f8ef7",
+  },
+  {
+    label: "Instagram",
+    icon: FaInstagram,
+    href: "https://www.instagram.com/raa._.shid/",
+    accent: "#e1306c",
+  },
+  {
+    label: "Email",
+    icon: MdEmail,
+    href: "mailto:ahmedraashid21@gmail.com",
+    accent: "#f97316",
+  },
 ];
 
 export function ContactSection() {
@@ -250,101 +266,137 @@ export function ContactSection() {
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.9, delay: 0.3 }}
           >
-            {/* Info cards */}
-            <div className="space-y-4">
-              {[
-                { label: "Location", value: "Vellore, Tamil Nadu, India", icon: "📍", accent: "#4f8ef7" },
-                { label: "Education", value: "VIT Vellore — M.Tech Software Engineering", icon: "🎓", accent: "#7c3aed" },
-                { label: "Status", value: "Open to opportunities", icon: "✅", accent: "#10b981" },
-              ].map(item => (
-                <div
-                  key={item.label}
-                  className="flex items-center gap-4 p-4 rounded-xl border"
-                  style={{
-                    background: "rgba(18,18,18,0.6)",
-                    borderColor: "rgba(255,255,255,0.06)",
-                  }}
-                >
-                  <div
-                    className="w-10 h-10 rounded-lg flex items-center justify-center text-lg shrink-0"
-                    style={{ background: `${item.accent}15` }}
-                  >
-                    {item.icon}
-                  </div>
-                  <div>
-                    <p className="text-xs text-gray-600 mb-0.5" style={{ fontFamily: "JetBrains Mono, monospace" }}>{item.label}</p>
-                    <p className="text-white text-sm font-medium" style={{ fontFamily: "Inter, sans-serif" }}>{item.value}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
+           {/* Info cards */}
+<div className="space-y-4">
+  {[
+    {
+      label: "Location",
+      value: "Chennai, Tamil Nadu, India",
+      icon: FaMapMarkerAlt,
+      accent: "#4f8ef7",
+    },
+    {
+      label: "Education",
+      value: "VIT Vellore — Integrated M.Tech Software Engineering",
+      icon: FaGraduationCap,
+      accent: "#7c3aed",
+    },
+  ].map((item) => {
+    const Icon = item.icon;
+
+    return (
+      <div
+        key={item.label}
+        className="flex items-center gap-4 p-4 rounded-xl border"
+        style={{
+          background: "rgba(18,18,18,0.6)",
+          borderColor: "rgba(255,255,255,0.06)",
+        }}
+      >
+        <div
+          className="w-10 h-10 rounded-lg flex items-center justify-center shrink-0"
+          style={{ background: `${item.accent}15` }}
+        >
+          <Icon size={18} color={item.accent} />
+        </div>
+
+        <div>
+          <p
+            className="text-xs text-gray-600 mb-0.5"
+            style={{ fontFamily: "JetBrains Mono, monospace" }}
+          >
+            {item.label}
+          </p>
+
+          <p
+            className="text-white text-sm font-medium"
+            style={{ fontFamily: "Inter, sans-serif" }}
+          >
+            {item.value}
+          </p>
+        </div>
+      </div>
+    );
+  })}
+</div>
 
             {/* Social icons */}
-            <div>
-              <p className="text-xs uppercase tracking-widest text-gray-600 mb-4" style={{ fontFamily: "JetBrains Mono, monospace" }}>
-                Find me on
-              </p>
-              <div className="flex gap-3 flex-wrap">
-                {socials.map(s => (
-                  <a
-                    key={s.label}
-                    href={s.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    data-hover
-                    className="flex items-center gap-2 px-4 py-2.5 rounded-xl border text-xs font-medium transition-all duration-300 hover:scale-105 hover:-translate-y-1"
-                    style={{
-                      background: `${s.accent}0d`,
-                      borderColor: `${s.accent}22`,
-                      color: "rgba(255,255,255,0.7)",
-                      fontFamily: "Inter, sans-serif",
-                    }}
-                    onMouseEnter={e => {
-                      const el = e.currentTarget;
-                      el.style.borderColor = `${s.accent}55`;
-                      el.style.boxShadow = `0 0 20px ${s.accent}22`;
-                      el.style.color = "#fff";
-                    }}
-                    onMouseLeave={e => {
-                      const el = e.currentTarget;
-                      el.style.borderColor = `${s.accent}22`;
-                      el.style.boxShadow = "none";
-                      el.style.color = "rgba(255,255,255,0.7)";
-                    }}
-                  >
-                    <span>{s.icon}</span>
-                    {s.label}
-                  </a>
-                ))}
-              </div>
-            </div>
+<div>
+  <p
+    className="text-xs uppercase tracking-widest text-gray-600 mb-4"
+    style={{ fontFamily: "JetBrains Mono, monospace" }}
+  >
+    Find me on
+  </p>
+
+  <div className="flex gap-3 flex-wrap">
+    {socials.map((s) => {
+      const Icon = s.icon;
+
+      return (
+        <a
+          key={s.label}
+          href={s.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          data-hover
+          className="flex items-center gap-2 px-4 py-2.5 rounded-xl border text-xs font-medium transition-all duration-300 hover:scale-105 hover:-translate-y-1"
+          style={{
+            background: `${s.accent}0d`,
+            borderColor: `${s.accent}22`,
+            color: "rgba(255,255,255,0.7)",
+            fontFamily: "Inter, sans-serif",
+          }}
+          onMouseEnter={(e) => {
+            const el = e.currentTarget;
+            el.style.borderColor = `${s.accent}55`;
+            el.style.boxShadow = `0 0 20px ${s.accent}22`;
+            el.style.color = "#fff";
+          }}
+          onMouseLeave={(e) => {
+            const el = e.currentTarget;
+            el.style.borderColor = `${s.accent}22`;
+            el.style.boxShadow = "none";
+            el.style.color = "rgba(255,255,255,0.7)";
+          }}
+        >
+          <Icon size={18} />
+          <span>{s.label}</span>
+        </a>
+      );
+    })}
+  </div>
+</div>
 
             {/* Download resume */}
             <a
-              href="#"
-              data-hover
-              className="flex items-center justify-center gap-3 py-4 rounded-xl border text-sm font-semibold transition-all duration-300 hover:scale-[1.02]"
-              style={{
-                borderColor: "rgba(255,255,255,0.1)",
-                color: "rgba(255,255,255,0.7)",
-                fontFamily: "Inter, sans-serif",
-              }}
-              onMouseEnter={e => {
-                const el = e.currentTarget;
-                el.style.borderColor = "rgba(79,142,247,0.4)";
-                el.style.boxShadow = "0 0 30px rgba(79,142,247,0.15)";
-                el.style.color = "#fff";
-              }}
-              onMouseLeave={e => {
-                const el = e.currentTarget;
-                el.style.borderColor = "rgba(255,255,255,0.1)";
-                el.style.boxShadow = "none";
-                el.style.color = "rgba(255,255,255,0.7)";
-              }}
-            >
-              <span>📄</span>
-              Download Resume
-            </a>
+  href="/raashid_sem6.pdf"
+  download
+  target="_blank"
+  rel="noopener noreferrer"
+  data-hover
+  className="flex items-center justify-center gap-3 py-4 rounded-xl border text-sm font-semibold transition-all duration-300 hover:scale-[1.02]"
+  style={{
+    borderColor: "rgba(255,255,255,0.1)",
+    color: "rgba(255,255,255,0.7)",
+    fontFamily: "Inter, sans-serif",
+  }}
+  onMouseEnter={e => {
+    const el = e.currentTarget;
+    el.style.borderColor = "rgba(79,142,247,0.4)";
+    el.style.boxShadow = "0 0 30px rgba(79,142,247,0.15)";
+    el.style.color = "#fff";
+  }}
+  onMouseLeave={e => {
+    const el = e.currentTarget;
+    el.style.borderColor = "rgba(255,255,255,0.1)";
+    el.style.boxShadow = "none";
+    el.style.color = "rgba(255,255,255,0.7)";
+  }}
+>
+  <span></span>
+  Download Resume
+</a>
           </motion.div>
         </div>
       </div>
@@ -353,7 +405,7 @@ export function ContactSection() {
       <div className="mt-24 text-center" style={{ borderTop: "1px solid rgba(255,255,255,0.04)" }}>
         <div className="pt-8 pb-4">
           <p className="text-xs text-gray-700" style={{ fontFamily: "JetBrains Mono, monospace" }}>
-            © 2025 Raashid Ahmed · Built with ⚡ React + Three.js + GSAP
+            © 2026 Raashid Ahmed. All Rights Reserved.
           </p>
         </div>
       </div>
