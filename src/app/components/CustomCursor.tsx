@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "motion/react";
 
 interface Particle {
@@ -99,13 +100,13 @@ export function CustomCursor() {
     return () => clearInterval(decay);
   }, []);
 
-  return (
+  const cursorContent = (
     <>
       {/* Main cursor ring */}
       <div
         ref={cursorRef}
-        className="fixed top-0 left-0 w-10 h-10 pointer-events-none z-[9999] transition-none"
-        style={{ willChange: "transform" }}
+        className="fixed top-0 left-0 w-10 h-10 pointer-events-none transition-none"
+        style={{ willChange: "transform", zIndex: 2147483647 }}
       >
         <div
           className="w-full h-full rounded-full border transition-all duration-200"
@@ -124,9 +125,10 @@ export function CustomCursor() {
       {/* Cursor dot */}
       <div
         ref={cursorDotRef}
-        className="fixed top-0 left-0 w-1.5 h-1.5 rounded-full pointer-events-none z-[9999] transition-none"
+        className="fixed top-0 left-0 w-1.5 h-1.5 rounded-full pointer-events-none transition-none"
         style={{
           willChange: "transform",
+          zIndex: 2147483647,
           background: isHovering ? "#f97316" : "#4f8ef7",
           boxShadow: isHovering
             ? "0 0 8px rgba(249,115,22,0.9)"
@@ -146,7 +148,7 @@ export function CustomCursor() {
             background: p.color,
             opacity: p.life * 0.8,
             boxShadow: `0 0 ${p.size * 2}px ${p.color}`,
-            zIndex: 9998,
+            zIndex: 2147483646,
           }}
         />
       ))}
@@ -159,7 +161,7 @@ export function CustomCursor() {
             className="fixed top-0 left-0 rounded-full pointer-events-none border"
             style={{
               borderColor: "#4f8ef7",
-              zIndex: 9997,
+              zIndex: 2147483645,
               transform: `translate(${r.x - 1}px, ${r.y - 1}px)`,
             }}
             initial={{ width: 2, height: 2, opacity: 0.8 }}
@@ -171,4 +173,10 @@ export function CustomCursor() {
       </AnimatePresence>
     </>
   );
+
+  // Portal straight to <body> so no animated/transformed ancestor
+  // (e.g. your slide-down project details) can ever clip or reposition it.
+  return typeof document !== "undefined"
+    ? createPortal(cursorContent, document.body)
+    : null;
 }

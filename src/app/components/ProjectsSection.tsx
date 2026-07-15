@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import { motion, useInView } from "motion/react";
+import ProjectModal from "./ProjectModal";
 import {
   FaTrain,
   FaShieldAlt,
@@ -14,82 +15,408 @@ import {
 const projects = [
   {
     title: "Railway Reservation System",
+
     desc: "Full-stack web application for booking and managing train tickets with real-time seat availability, user authentication, booking management, and admin dashboard.",
-    stack: ["React", "Node.js", "MongoDB", "Express"],
+
+    stack: [
+      "React",
+      "Node.js",
+      "MongoDB",
+      "Express",
+    ],
+
     accent: "#4f8ef7",
+
     icon: FaTrain,
+
     tag: "Full Stack",
+
     featured: true,
+
+    cover: "/projects/railway/cover.png",
+
+    screenshots: [
+      "/projects/railway/1.png",
+      "/projects/railway/2.png",
+      "/projects/railway/3.png",
+    ],
+
+    features: [
+      "User Authentication",
+      "Train Search",
+      "Seat Booking",
+      "Payment Integration",
+      "Admin Dashboard",
+      "Booking History",
+    ],
+
+    github: "",
+
+    demo: "",
+
+    pdf: "/projects/railway/documentation.pdf",
   },
 
   {
     title: "Credit Card Fraud Detection",
+
     desc: "Machine learning model achieving high fraud detection accuracy using ensemble methods and anomaly detection techniques for financial transaction monitoring.",
-    stack: ["Python", "Scikit-learn", "Pandas", "Flask"],
+
+    stack: [
+      "Python",
+      "Scikit-learn",
+      "Pandas",
+      "Flask",
+    ],
+
     accent: "#7c3aed",
+
     icon: FaShieldAlt,
+
     tag: "Machine Learning",
+
     featured: true,
+
+    cover: "/projects/fraud/cover.png",
+
+    screenshots: [
+      "/projects/fraud/1.png",
+      "/projects/fraud/2.png",
+      "/projects/fraud/3.png",
+    ],
+
+    features: [
+      "Fraud Detection Model",
+      "Transaction Analysis",
+      "Real-time Prediction",
+      "Performance Dashboard",
+      "Data Visualization",
+      "Model Evaluation",
+    ],
+
+    github: "",
+
+    demo: "",
+
+    pdf: "/projects/fraud/documentation.pdf",
   },
 
   {
     title: "Human Burnout Detection",
+
     desc: "AI-powered prediction platform leveraging NLP and behavioral analysis to identify burnout risk levels and recommend preventive interventions.",
-    stack: ["Python", "TensorFlow", "NLP", "React"],
+
+    stack: [
+      "Python",
+      "TensorFlow",
+      "NLP",
+      "React",
+    ],
+
     accent: "#f97316",
+
     icon: FaBrain,
+
     tag: "AI Platform",
+
     featured: true,
+
+    cover: "/projects/burnout/cover.png",
+
+    screenshots: [
+      "/projects/burnout/1.png",
+      "/projects/burnout/2.png",
+      "/projects/burnout/3.png",
+    ],
+
+    features: [
+      "Burnout Prediction",
+      "Employee Analytics",
+      "NLP Processing",
+      "Risk Assessment",
+      "Interactive Dashboard",
+      "Recommendation Engine",
+    ],
+
+    github: "",
+
+    demo: "",
+
+    pdf: "/projects/burnout/documentation.pdf",
   },
 
   {
     title: "Facial & Hand Gesture Recognition",
+
     desc: "Real-time computer vision system enabling touchless interaction through facial tracking and gesture recognition using advanced image processing.",
-    stack: ["OpenCV", "MediaPipe", "Python", "TensorFlow"],
+
+    stack: [
+      "OpenCV",
+      "MediaPipe",
+      "Python",
+      "TensorFlow",
+    ],
+
     accent: "#06b6d4",
+
     icon: FaHandPaper,
+
     tag: "Computer Vision",
+
     featured: false,
+
+    cover: "/projects/gesture/cover.png",
+
+    screenshots: [
+      "/projects/gesture/1.png",
+      "/projects/gesture/2.png",
+      "/projects/gesture/3.png",
+    ],
+
+    features: [
+      "Real-time Gesture Recognition",
+      "Face Detection",
+      "MediaPipe Integration",
+      "OpenCV Processing",
+      "Touchless Interaction",
+      "Accessibility Support",
+    ],
+
+    github: "",
+
+    demo: "",
+
+    pdf: "/projects/gesture/documentation.pdf",
   },
+  {
+  title: "Gamified CTF Challenge Platform",
+
+  desc: "A cloud-native cybersecurity learning platform that delivers interactive Capture The Flag (CTF) challenges through gamified quizzes, leaderboards, and real-time scoring. Deployed on AWS with a scalable full-stack architecture featuring secure authentication, automated CI/CD pipelines, HTTPS encryption, and cloud-native infrastructure.",
+
+  stack: [
+    "React",
+    "Node.js",
+    "Express.js",
+    "MongoDB",
+    "AWS EC2",
+    "AWS Amplify",
+    "Nginx",
+    "PM2",
+    "JWT",
+  ],
+
+  accent: "#22c55e",
+
+  icon: FaShieldAlt,
+
+  tag: "Cloud Computing",
+
+  featured: true,
+
+  cover: "/projects/ctf/cover.png",
+
+  screenshots: [
+    "/projects/ctf/1.png",
+    "/projects/ctf/2.png",
+    "/projects/ctf/3.png",
+    "/projects/ctf/4.png",
+    "/projects/ctf/5.png",
+  ],
+
+  features: [
+    "Gamified Capture The Flag Challenges",
+    "Secure JWT Authentication",
+    "Real-time Leaderboards & Scoring",
+    "Hint-Based Challenge System",
+    "Challenge Difficulty Filtering",
+    "AWS EC2 Backend Deployment",
+    "AWS Amplify Frontend Hosting",
+    "Nginx Reverse Proxy with SSL",
+    "CI/CD Pipeline Integration",
+    "Responsive Dashboard & Analytics",
+  ],
+
+  github: "",
+
+  demo: "",
+
+  pdf: "/projects/ctf/documentation.pdf",
+},
 
   {
     title: "Mental Health Counselling System",
-    desc: "NLP-powered conversational assistant that provides mental health support, mood tracking, and connects users with professional counselling resources.",
-    stack: ["NLP", "Python", "React", "Node.js"],
+
+    desc: "An NLP-powered conversational assistant that provides mental health support, mood tracking, and connects users with professional counselling resources.",
+
+    stack: [
+      "React",
+      "Node.js",
+      "Python",
+      "NLP",
+    ],
+
     accent: "#a855f7",
+
     icon: FaComments,
+
     tag: "NLP · Healthcare",
+
     featured: false,
+
+    cover: "/projects/counselling/cover.png",
+
+    screenshots: [
+      "/projects/counselling/1.png",
+      "/projects/counselling/2.png",
+      "/projects/counselling/3.png",
+    ],
+
+    features: [
+      "AI-powered conversational chatbot",
+      "Mood tracking dashboard",
+      "Personalized mental wellness recommendations",
+      "Secure authentication",
+      "Appointment booking support",
+      "Responsive UI",
+    ],
+
+    github: "",
+
+    demo: "",
+
+    pdf: "/projects/counselling/documentation.pdf",
   },
 
   {
     title: "IoT Smart Parking System",
+
     desc: "RFID and sensor-based automated parking management platform with real-time slot monitoring, cloud synchronization, and mobile notifications.",
-    stack: ["Arduino", "NodeMCU", "RFID", "IoT"],
+
+    stack: [
+      "Arduino",
+      "NodeMCU",
+      "RFID",
+      "IoT",
+    ],
+
     accent: "#10b981",
+
     icon: FaParking,
+
     tag: "IoT · Embedded",
+
     featured: false,
+
+    cover: "/projects/parking/cover.png",
+
+    screenshots: [
+      "/projects/parking/1.png",
+      "/projects/parking/2.png",
+      "/projects/parking/3.png",
+    ],
+
+    features: [
+      "RFID Authentication",
+      "Smart Parking Slots",
+      "Real-time Monitoring",
+      "Cloud Synchronization",
+      "Automatic Gate Control",
+      "IoT Dashboard",
+    ],
+
+    github: "",
+
+    demo: "",
+
+    pdf: "/projects/parking/documentation.pdf",
   },
 
   {
     title: "AI Fitness & Diet Recommendation System",
+
     desc: "Machine learning-powered platform that analyzes health metrics, activity levels, and fitness goals to generate personalized workout and nutrition plans.",
-    stack: ["Python", "Machine Learning", "Scikit-learn", "Flask"],
+
+    stack: [
+      "Python",
+      "Machine Learning",
+      "Scikit-learn",
+      "Flask",
+    ],
+
     accent: "#8b5cf6",
+
     icon: FaDumbbell,
+
     tag: "AI · Healthcare",
+
     featured: true,
+
+    cover: "/projects/fitness/cover.png",
+
+    screenshots: [
+      "/projects/fitness/1.png",
+      "/projects/fitness/2.png",
+      "/projects/fitness/3.png",
+    ],
+
+    features: [
+      "Workout Recommendation",
+      "Diet Planning",
+      "BMI Analysis",
+      "Fitness Prediction",
+      "Progress Tracking",
+      "Health Dashboard",
+    ],
+
+    github: "",
+
+    demo: "",
+
+    pdf: "/projects/fitness/documentation.pdf",
   },
 
   {
     title: "Smart Hospital Management System",
+
     desc: "Enterprise-grade healthcare automation platform featuring patient registration, appointment scheduling, EHR management, billing, pharmacy inventory, laboratory reports, notifications, and administrative dashboards.",
-    stack: ["React.js", "Node.js", "MongoDB", "Express.js"],
+
+    stack: [
+      "React.js",
+      "Node.js",
+      "MongoDB",
+      "Express.js",
+    ],
+
     accent: "#06b6d4",
+
     icon: FaHospital,
+
     tag: "Healthcare · Digital Transformation",
+
     featured: true,
+
+    cover: "/projects/hospital/cover.png",
+
+    screenshots: [
+      "/projects/hospital/1.png",
+      "/projects/hospital/2.png",
+      "/projects/hospital/3.png",
+    ],
+
+    features: [
+      "Patient Management",
+      "Appointment Scheduling",
+      "Electronic Health Records",
+      "Billing System",
+      "Pharmacy Management",
+      "Admin Dashboard",
+    ],
+
+    github: "",
+
+    demo: "",
+
+    pdf: "/projects/hospital/documentation.pdf",
   },
 ];
 
@@ -97,10 +424,12 @@ function ProjectCard({
   project,
   index,
   inView,
+  onOpen,
 }: {
   project: typeof projects[0];
   index: number;
   inView: boolean;
+  onOpen: (project: typeof projects[0]) => void;
 }) {
   const [hovered, setHovered] = useState(false);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
@@ -235,15 +564,16 @@ function ProjectCard({
           animate={{ opacity: hovered ? 1 : 0 }}
           transition={{ duration: 0.2 }}
         >
-          <span
-            className="text-xs"
-            style={{
-              color: project.accent,
-              fontFamily: "JetBrains Mono, monospace",
-            }}
-          >
-            View Project →
-          </span>
+          <button
+  onClick={() => onOpen(project)}
+  className="text-xs hover:underline transition-all"
+  style={{
+    color: project.accent,
+    fontFamily: "JetBrains Mono, monospace",
+  }}
+>
+  View Details →
+</button>
 
           <div className="flex gap-1">
             {[...Array(3)].map((_, i) => (
@@ -264,6 +594,8 @@ function ProjectCard({
 }
 
 export function ProjectsSection() {
+ const [selectedProject, setSelectedProject] =
+  useState<typeof projects[number] | null>(null);
   const sectionRef = useRef<HTMLElement>(null);
   const inView = useInView(sectionRef, { once: true, margin: "-100px" });
   const [filter, setFilter] = useState("All");
@@ -335,11 +667,23 @@ export function ProjectsSection() {
 
         {/* Project grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {filtered.map((project, i) => (
-            <ProjectCard key={project.title} project={project} index={i} inView={inView} />
-          ))}
-        </div>
-      </div>
-    </section>
+  {filtered.map((project, i) => (
+    <ProjectCard
+      key={project.title}
+      project={project}
+      index={i}
+      inView={inView}
+      onOpen={setSelectedProject}
+    />
+  ))}
+</div>
+</div>
+
+<ProjectModal
+  project={selectedProject}
+  onClose={() => setSelectedProject(null)}
+/>
+
+</section>
   );
 }
