@@ -23,6 +23,12 @@ const socials = [
     href: "mailto:ahmedraashid21@gmail.com",
     accent: "#f97316",
   },
+  {
+  label: "LinkedIn",
+  icon: FaLinkedin,
+  href: "https://www.linkedin.com/in/raashid-ahmed-417287421/",
+  accent: "#0A66C2",
+},
 ];
 
 export function ContactSection() {
